@@ -1,0 +1,64 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020-021 duty
+022     @TRIS_C
+023     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  SisInit
+00001D  @delay_ms1
+000031  Set_PWM
+000079  MAIN
+000079  @cinit1
+00008F  @cinit2
+
+Project Directory:
+    E:\Martin Hdez\Desktop\CCS 16F\887\Práctica 8\
+
+Project Files:
+    LED RGB.c                                               [24-feb.-22 14:22  CRC=E76DC298]
+    ..\..\..\..\..\Program Files\PICC\Devices\16F887.h      [15-ene.-18 15:53  CRC=9C71CB72]
+
+Source signature=2051597C
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=A0FB
+
+Units:
+    LED RGB (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   LED RGB.xsym
+    Errors:      LED RGB.err
+    Ext Symbols: LED RGB.esym
+    INHX8:       LED RGB.hex
+    Symbols:     LED RGB.sym
+    List:        LED RGB.lst
+    Debug/COFF:  LED RGB.cof
+    Project:     LED RGB.ccspjt
+    Call Tree:   LED RGB.tre
+    Statistics:  LED RGB.STA

@@ -1,0 +1,286 @@
+CCS PCM C Compiler, Version 5.076, 56587               24-feb.-22 14:38
+
+               Filename:   E:\Martin Hdez\Desktop\CCS 16F\877A\Práctica 8\LED RGB.lst
+
+               ROM used:   173 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   8 (2%) at main() level
+                           9 (2%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   073
+0003:  NOP
+.................... /*  
+....................  AUTOR: MICROSIDE TECHNOLOGY S.A. DE C.V. 
+....................  FECHA: JUNIO 2019 
+.................... */ 
+....................  
+.................... /* 
+.................... --------------------------------------------------------------------------- 
+.................... Esta práctica consiste en realizar un control PWM 
+.................... para el control de un LED RGB 
+.................... --------------------------------------------------------------------------- 
+.................... */ 
+....................  
+.................... #include <16F877A.h>                            //Incluye el microcontrolador con el que se va a trabajar  
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+....................  
+.................... #list 
+....................  
+.................... #use delay(clock=20Mhz, crystal)                //Tipo de oscilador y frecuencia dependiendo del microcontrolador  
+*
+0017:  MOVLW  23
+0018:  MOVWF  04
+0019:  BCF    03.7
+001A:  MOVF   00,W
+001B:  BTFSC  03.2
+001C:  GOTO   02A
+001D:  MOVLW  06
+001E:  MOVWF  78
+001F:  CLRF   77
+0020:  DECFSZ 77,F
+0021:  GOTO   020
+0022:  DECFSZ 78,F
+0023:  GOTO   01F
+0024:  MOVLW  7B
+0025:  MOVWF  77
+0026:  DECFSZ 77,F
+0027:  GOTO   026
+0028:  DECFSZ 00,F
+0029:  GOTO   01D
+002A:  RETURN
+....................  
+....................  
+.................... #define LEDR PIN_B0                             //Pin donde está conectado el LED rojo 
+.................... #define LEDV PIN_B1                             //Pin donde está conectado el LED verde 
+.................... #define LEDA PIN_B2                             //Pin donde está conectado el LED azul 
+....................  
+.................... unsigned int16 Duty=0;                          //Variable para guardar el valor para PWM 
+....................  
+.................... void SisInit(void) 
+....................  
+.................... { 
+....................    setup_timer_2 (T2_DIV_BY_16, 254, 1);                        //Configura Timer2, periodo ajustado a 342uS 
+*
+0004:  MOVLW  00
+0005:  MOVWF  78
+0006:  IORLW  06
+0007:  MOVWF  12
+0008:  MOVLW  FE
+0009:  BSF    03.5
+000A:  MOVWF  12
+....................    setup_ccp1 (CCP_PWM);    //Configura el módulo CCP para uso del PWM 
+000B:  BCF    03.5
+000C:  BCF    22.2
+000D:  MOVF   22,W
+000E:  BSF    03.5
+000F:  MOVWF  07
+0010:  BCF    03.5
+0011:  BCF    07.2
+0012:  MOVLW  0C
+0013:  MOVWF  17
+0014:  BCF    0A.3
+0015:  BCF    0A.4
+0016:  GOTO   084 (RETURN)
+.................... } 
+....................  
+.................... void Set_PWM (void) 
+....................  
+.................... { 
+....................  
+....................   // int i;                                                       //Declaramos variable 
+....................    for (Duty = 255; Duty > 0; Duty--)                             // Ciclo para disminuir el valor de la variable 
+*
+002B:  CLRF   21
+002C:  MOVLW  FF
+002D:  MOVWF  20
+002E:  MOVF   20,F
+002F:  BTFSS  03.2
+0030:  GOTO   034
+0031:  MOVF   21,F
+0032:  BTFSC  03.2
+0033:  GOTO   04F
+....................  
+....................    { 
+....................     set_pwm1_duty (Duty);                                         // Guarda la salida PWM en la variable 
+0034:  MOVF   21,W
+0035:  MOVWF  79
+0036:  MOVF   20,W
+0037:  MOVWF  78
+0038:  RRF    79,F
+0039:  RRF    78,F
+003A:  RRF    79,F
+003B:  RRF    78,F
+003C:  RRF    79,F
+003D:  MOVF   78,W
+003E:  MOVWF  15
+003F:  RRF    79,F
+0040:  RRF    79,W
+0041:  ANDLW  30
+0042:  MOVWF  77
+0043:  MOVF   17,W
+0044:  ANDLW  CF
+0045:  IORWF  77,W
+0046:  MOVWF  17
+....................     delay_ms (5);                                                 // Retardo 
+0047:  MOVLW  05
+0048:  MOVWF  23
+0049:  CALL   017
+004A:  MOVF   20,W
+004B:  BTFSC  03.2
+004C:  DECF   21,F
+004D:  DECF   20,F
+004E:  GOTO   02E
+....................     } 
+....................  
+....................     for (Duty = 0; Duty < 255; Duty++)                            // Ciclo para aumentar el valor de la variable 
+004F:  CLRF   21
+0050:  CLRF   20
+0051:  MOVF   21,F
+0052:  BTFSS  03.2
+0053:  GOTO   072
+0054:  MOVF   20,W
+0055:  SUBLW  FE
+0056:  BTFSS  03.0
+0057:  GOTO   072
+....................  
+....................     { 
+....................      set_pwm1_duty (Duty);                                        // Guarda la salida PWM en la variable 
+0058:  MOVF   21,W
+0059:  MOVWF  79
+005A:  MOVF   20,W
+005B:  MOVWF  78
+005C:  RRF    79,F
+005D:  RRF    78,F
+005E:  RRF    79,F
+005F:  RRF    78,F
+0060:  RRF    79,F
+0061:  MOVF   78,W
+0062:  MOVWF  15
+0063:  RRF    79,F
+0064:  RRF    79,W
+0065:  ANDLW  30
+0066:  MOVWF  77
+0067:  MOVF   17,W
+0068:  ANDLW  CF
+0069:  IORWF  77,W
+006A:  MOVWF  17
+....................      delay_ms (5);                                                // Retardo 
+006B:  MOVLW  05
+006C:  MOVWF  23
+006D:  CALL   017
+006E:  INCF   20,F
+006F:  BTFSC  03.2
+0070:  INCF   21,F
+0071:  GOTO   051
+....................    } 
+0072:  RETURN
+....................  
+.................... } 
+....................  
+.................... void main() 
+0073:  MOVF   03,W
+0074:  ANDLW  1F
+0075:  MOVWF  03
+0076:  CLRF   21
+0077:  CLRF   20
+0078:  MOVLW  FF
+0079:  MOVWF  22
+007A:  BSF    03.5
+007B:  BSF    1F.0
+007C:  BSF    1F.1
+007D:  BSF    1F.2
+007E:  BCF    1F.3
+007F:  MOVLW  07
+0080:  MOVWF  1C
+0081:  BCF    03.7
+....................  
+.................... { 
+....................  
+....................    SisInit(); 
+0082:  BCF    03.5
+0083:  GOTO   004
+....................  
+....................     while (1)                                                   // Ciclo infinito 
+....................  
+....................      { 
+....................  
+....................        output_high (LEDR) ; 
+0084:  BSF    03.5
+0085:  BCF    06.0
+0086:  BCF    03.5
+0087:  BSF    06.0
+....................        output_low (LEDV) ; 
+0088:  BSF    03.5
+0089:  BCF    06.1
+008A:  BCF    03.5
+008B:  BCF    06.1
+....................        output_low (LEDA) ; 
+008C:  BSF    03.5
+008D:  BCF    06.2
+008E:  BCF    03.5
+008F:  BCF    06.2
+....................  
+....................        Set_PWM ();                                              // Convocamos la función 
+0090:  CALL   02B
+....................  
+....................        output_low (LEDR) ; 
+0091:  BSF    03.5
+0092:  BCF    06.0
+0093:  BCF    03.5
+0094:  BCF    06.0
+....................        output_high (LEDV) ; 
+0095:  BSF    03.5
+0096:  BCF    06.1
+0097:  BCF    03.5
+0098:  BSF    06.1
+....................        output_low (LEDA) ; 
+0099:  BSF    03.5
+009A:  BCF    06.2
+009B:  BCF    03.5
+009C:  BCF    06.2
+....................  
+....................        Set_PWM ();                                              // Convocamos la función 
+009D:  CALL   02B
+....................  
+....................        output_low (LEDR) ; 
+009E:  BSF    03.5
+009F:  BCF    06.0
+00A0:  BCF    03.5
+00A1:  BCF    06.0
+....................        output_low (LEDV) ; 
+00A2:  BSF    03.5
+00A3:  BCF    06.1
+00A4:  BCF    03.5
+00A5:  BCF    06.1
+....................        output_high (LEDA) ; 
+00A6:  BSF    03.5
+00A7:  BCF    06.2
+00A8:  BCF    03.5
+00A9:  BSF    06.2
+....................  
+....................        Set_PWM ();                                              // Convocamos la función 
+00AA:  CALL   02B
+00AB:  GOTO   084
+....................  
+....................      } 
+....................  
+.................... } 
+00AC:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F72   HS NOWDT PUT BROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

@@ -1,0 +1,23 @@
+[PROJECT]
+Target=LED RGB.hex
+Processor_Text=PIC16F877A
+CCSVersion=5.076
+Compiler=PCM
+[Target Data]
+FileList=LED RGB.c
+[LED RGB.c]
+Type=4
+[mru-list]
+1=LED RGB.c
+[Units]
+Count=1
+1=LED RGB (main)
+
+[defines]
+buildcount=1
+
+[ProjectLog]
+Days=1
+D1=24-02-2022
+D1_L=1
+D1_L1=[52688]Project Closed.
