@@ -1,0 +1,31 @@
+on: [push]
+
+jobs:
+  gist-sync:
+    name: gist-sync
+    runs-on: ubuntu-latest
+    steps:
+    #PIC16F877A
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: vhperaltaj/gist-sync-action@v1.0.0
+        id: PIC16F877A
+        with:
+          auth: ${{ secrets.GIST_TOKEN }}
+          gist_url: https://gist.github.com/microside-mx/88e975a2e9ad5f6ed0133b8b37ba683d
+          gist_title: Práctica 8- LED RGB PIC16F877A CCS.c
+          gist_description: Prácticas PIC CCS
+          github_file: Proyecto/PIC16F877A/LED RGB.c
+          file_encoding: WINDOWS-1252
+    #PIC16F887
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: vhperaltaj/gist-sync-action@v1.0.0
+        id: PIC16F887
+        with:
+          auth: ${{ secrets.GIST_TOKEN }}
+          gist_url: https://gist.github.com/microside-mx/1f39cb093161e165a32442b803012198
+          gist_title: Práctica 8- LED RGB PIC16F887 CCS.c
+          gist_description: Prácticas PIC CCS
+          github_file: Proyecto/PIC16F887/LED RGB.c
+          file_encoding: WINDOWS-1252
