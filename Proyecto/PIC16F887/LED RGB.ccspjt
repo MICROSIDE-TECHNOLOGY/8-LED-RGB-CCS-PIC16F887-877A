@@ -1,7 +1,7 @@
 [PROJECT]
 Target=LED RGB.hex
 Processor_Text=PIC16F887
-CCSVersion=5.076
+CCSVersion=5.115d
 Compiler=PCM
 [Target Data]
 FileList=LED RGB.c
@@ -9,16 +9,27 @@ FileList=LED RGB.c
 Type=4
 [mru-list]
 1=LED RGB.c
-[Units]
-Count=1
-1=LED RGB (main)
 
 [defines]
-buildcount=1
+buildcount=2
 
 [ProjectLog]
-Days=1
+Days=2
 D1=24-02-2022
 D1_L=2
 D1_L1=[51797]Started Editing.
 D1_L2=[51805]Project Closed.
+D2=29-08-2023
+D2_L=1
+D2_L1=[60642]Project Opened.
+
+[fileformats]
+forcecoff=0
+
+[Opened Files]
+1=LED RGB.c
+t1=1
+Count=1
+[Units]
+Count=1
+1=LED RGB (main)

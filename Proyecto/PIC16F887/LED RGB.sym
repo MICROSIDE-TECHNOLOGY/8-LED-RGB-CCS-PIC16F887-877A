@@ -1,7 +1,7 @@
-004-005 @READ_PROGRAM_MEMORY8.P1
-004-005 @WRITE_PROGRAM_MEMORY8.P2
-015     CCP_1_LOW
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
 015     CCP_1
+015     CCP_1_LOW
 016     CCP_1_HIGH
 01B     CCP_2
 01B     CCP_2_LOW
@@ -16,31 +16,29 @@
 07A     @SCRATCH
 107.6   C1OUT
 108.6   C2OUT
-10D-10E @WRITE_PROGRAM_MEMORY8.P1
-10D-10E @READ_PROGRAM_MEMORY8.P2
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
 
 ROM Allocation:
-000004  SisInit
-00001D  @delay_ms1
-000031  Set_PWM
-000079  MAIN
-000079  @cinit1
-00008F  @cinit2
+000004  @delay_ms1
+000018  Set_PWM
+000060  MAIN
+000060  @cinit1
+000076  @cinit2
 
 Project Directory:
-    E:\Martin Hdez\Desktop\CCS 16F\887\Práctica 8\
+    C:\Users\victo\OneDrive\Documentos\X-TRAINER-hands-on\CCS\PIC16F\8-LED-RGB-CCS-PIC16F887-877A\Proyecto\PIC16F887\
 
 Project Files:
-    LED RGB.c                                               [24-feb.-22 14:22  CRC=E76DC298]
-    ..\..\..\..\..\Program Files\PICC\Devices\16F887.h      [15-ene.-18 15:53  CRC=9C71CB72]
+    LED RGB.c                                               [29-ago.-23 16:48  CRC=B78935DC]
+    ..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICCDEMO\Devices\16F887.h [02-may.-23 08:27  CRC=A824942D]
 
-Source signature=2051597C
+Source signature=07D25E36
 Program memory checksum=0000
-Program memory CRC=0000
-Hex file CRC=A0FB
+Hex file CRC=CF81
 
 Units:
-    LED RGB (main)
+    C:\Users\victo\OneDrive\Documentos\X-TRAINER-hands-on\CCS\PIC16F\8-LED-RGB-CCS-PIC16F887-877A\Proyecto\PIC16F887\LED RGB (main)
 
 Compiler Settings:
     Processor:      PIC16F887
@@ -49,7 +47,10 @@ Compiler Settings:
     Opt Level:      9
     Short,Int,Long: UNSIGNED: 1,8,16
     Float,Double:   32,32
-    Compile Mode:       CCS5
+    Compile Mode:   CCS5
+
+Compiler operating in Evaluation Mode
+To obtain a fully enabled compiler visit www.ccsinfo.com/products
 
 Output Files:
     XREF file:   LED RGB.xsym

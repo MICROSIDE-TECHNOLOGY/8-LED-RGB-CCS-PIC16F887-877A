@@ -1,9 +1,9 @@
 
-ROM used:   173/8192 (2%)
-            173/8192 (2%) including unused fragments
+ROM used:   169/8192 (2%)
+            169/8192 (2%) including unused fragments
 
             0.2 Average locations per line
-            6.9 Average locations per statement
+            7.0 Average locations per statement
 
 RAM used:   8/368 (2%) at main() level
             9/368 (2%) worst case
@@ -13,35 +13,34 @@ Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   82    25 100  LED RGB.c
-  684     0   0  ..\..\..\..\..\Program Files\PICC\Devices\16F877A.h
+   63    24 100  LED RGB.c
+  708     0   0  ..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICCDEMO\Devices\16F877A.h
 ----- -----
-  766    25 Total
+  771    24 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
 0     20  12    1             @delay_ms1
-0     19  11    0     56  1.6  SisInit
-0     72  42    0    221  4.1  Set_PWM
-0     58  34    0    262  1.8  MAIN
+0     72  43    0    221  4.1  Set_PWM
+0     73  43    0    331  2.3  MAIN
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               3
-    Statements              25
-    Comments                156
-    Volume (V)              708
-    Difficulty (D)          7.3
-    Effort to implement (E) 5172
-    Time to implement (T)   5 minutes
+    Functions               2
+    Statements              24
+    Comments                163
+    Volume (V)              664
+    Difficulty (D)          6.2
+    Effort to implement (E) 4129
+    Time to implement (T)   4 minutes
     Est Delivered Bugs (B)  0
     Cyclomatic Complexity   2
-    Maintainability (MI)    59
+    Maintainability (MI)    150
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00003     4  0  
-00004-007FF   169  1875  
+00004-007FF   165  1879  
 00800-00FFF     0  2048  
 01000-017FF     0  2048  
 01800-01FFF     0  2048  
